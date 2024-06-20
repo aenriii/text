@@ -16,12 +16,13 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - uses: dtolnay/rust-toolchain@nightly
-            - name: "Build"
+
+            - name: "Build (Linux & MacOS)"
               if: matrix.os != 'windows-latest'
               run: |
                SLINT_NO_QT=1 cargo build --release
             
-            - name: "Build"
+            - name: "Build (Windows)"
               if: matrix.os == 'windows-latest'
               run: |
                 setx "SLINT_NO_QT" "1"
@@ -45,6 +46,6 @@ jobs:
               uses: actions/upload-artifact@v3
               if: matrix.os == 'macos-latest'
               with:
-                name: textmacos
+                name: text-macos
                 path: target/release/text
 
