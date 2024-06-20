@@ -1,0 +1,39 @@
+
+
+
+import { CatppuccinPallete } from "style/CatppuccinPallete.slint";
+import { Titlebar } from "components/Titlebar.slint";
+export component Application inherits Window {
+    min-height: 500px;
+    min-width: 700px;
+
+    title: "text";
+    background: transparent;
+    no-frame: true;
+
+    callback window-close <=> titlebar.close;
+    callback window-minimize <=> titlebar.minimize;
+    callback window-maximize <=> titlebar.maximize;
+
+    callback window-drag-start <=> titlebar.drag-start;
+    callback window-drag-move <=> titlebar.drag-move;
+    callback window-drag-end <=> titlebar.drag-end;
+
+
+    // in property <string> flavor <=> CatppuccinPallete.flavor;
+
+    rect := Rectangle {
+        width: 100%;
+        height: 100%;
+        background: CatppuccinPallete.background;
+        border-radius: 10px;
+    }
+    VerticalLayout {
+        max-width: root.width;
+        titlebar := Titlebar {
+            title: root.title;
+        }
+    }
+
+}
+

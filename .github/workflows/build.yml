@@ -1,0 +1,44 @@
+# loosely based on https://github.com/Obscurely/falion/blob/master/.github/workflows/release.yml
+---
+name: Build (Nightly)
+on:
+    push:
+        branches:
+            - main
+permissions:
+  contents: write
+jobs:
+    build:
+        name: "Build (Nightly)"
+        strategy:
+            matrix:
+                os: [ ubuntu-latest, macos-latest, windows-latest ]
+        runs-on: ${{ matrix.os }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: dtolnay/rust-toolchain@nightly
+            - name: "Build"
+              run: |
+               SLINT_NO_QT=1 cargo build --release
+            
+            - name: Upload Windows Artifact
+              uses: actions/upload-artifact@v3
+              if: matrix.os == 'windows-latest'
+              with:
+                name: text.exe
+                path: target/release/text.exe
+            
+            - name: Upload Linux Artifact
+              uses: actions/upload-artifact@v3
+              if: matrix.os == 'ubuntu-latest'
+              with:
+                name: text-linux
+                path: target/release/text
+
+            - name: Upload MacOS Artifact
+              uses: actions/upload-artifact@v3
+              if: matrix.os == 'macos-latest'
+              with:
+                name: textmacos
+                path: target/release/text
+

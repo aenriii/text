@@ -1,0 +1,493 @@
+
+export global CatppuccinPallete {
+    in property <string> flavor: "mocha";
+
+    // #region Background Colors
+
+    out property <brush> background: {
+        if (flavor == "mocha") {
+            return #1e1e2e;
+        }
+        if (flavor == "macchiato") {
+            return #24273a;
+        }
+        if (flavor == "frappe") {
+            return #303446;
+        }
+        if (flavor == "latte") {
+            return #eff1f5;
+        }
+        return #ffffff;
+    };
+    out property <brush> secondary-pane0: {
+        if (flavor == "mocha") {
+            return #11111b;
+        }
+        if (flavor == "macchiato") {
+            return #181926;
+        }
+        if (flavor == "frappe") {
+            return #232634;
+        }
+        if (flavor == "latte") {
+            return #dce0e8;
+        }
+        return #ffffff;
+    };
+    out property <brush> secondary-pane1: {
+        if (flavor == "mocha") {
+            return #181825;
+        }
+        if (flavor == "macchiato") {
+            return #1e2030;
+        }
+        if (flavor == "frappe") {
+            return #292c3c;
+        }
+        if (flavor == "latte") {
+            return #e6e9ef;
+        }
+        return #ffffff;
+    };
+    out property <brush> surface0: {
+        if (flavor == "mocha") {
+            return #313244;
+        }
+        if (flavor == "macchiato") {
+            return #363a4f;
+        }
+        if (flavor == "frappe") {
+            return #414559;
+        }
+        if (flavor == "latte") {
+            return #ccd0da;
+        }
+        return #ffffff;
+    };
+    out property <brush> surface1: {
+        if (flavor == "mocha") {
+            return #45475a;
+        }
+        if (flavor == "macchiato") {
+            return #494d64;
+        }
+        if (flavor == "frappe") {
+            return #51576d;
+        }
+        if (flavor == "latte") {
+            return #bcc0cc;
+        }
+        return #ffffff;
+    };
+    out property <brush> surface2: {
+        if (flavor == "mocha") {
+            return #585b70;
+        }
+        if (flavor == "macchiato") {
+            return #5b6078;
+        }
+        if (flavor == "frappe") {
+            return #626880;
+        }
+        if (flavor == "latte") {
+            return #acb0be;
+        }
+        return #ffffff;
+    };
+    out property <brush> overlay0: {
+        if (flavor == "mocha") {
+            return #6c7086;
+        }
+        if (flavor == "macchiato") {
+            return #6e738d;
+        }
+        if (flavor == "frappe") {
+            return #737994;
+        }
+        if (flavor == "latte") {
+            return #9ca0b0;
+        }
+        return #ffffff;
+    };
+    out property <brush> overlay1: {
+        if (flavor == "mocha") {
+            return #7f849c;
+        }
+        if (flavor == "macchiato") {
+            return #8087a2;
+        }
+        if (flavor == "frappe") {
+            return #838ba7;
+        }
+        if (flavor == "latte") {
+            return #8c8fa1;
+        }
+        return #ffffff;
+    };
+    out property <brush> overlay2: {
+        if (flavor == "mocha") {
+            return #9399b2;
+        }
+        if (flavor == "macchiato") {
+            return #939ab7;
+        }
+        if (flavor == "frappe") {
+            return #949cbb;
+        }
+        if (flavor == "latte") {
+            return #7c7f93;
+        }
+        return #ffffff;
+    };
+    
+    // #endregion
+
+    // #region Typography
+
+    private property <brush> text-base: {
+        if (flavor == "mocha") {
+            return #cdd6f4;
+        }
+        if (flavor == "macchiato") {
+            return #cad3f5;
+        }
+        if (flavor == "frappe") {
+            return #c6d0f5;
+        }
+        if (flavor == "latte") {
+            return #4c4f69;
+        }
+        return #ffffff;
+    };
+
+    out property <brush> body: root.text-base;
+    out property <brush> header1: root.text-base;
+    out property <brush> header2: {
+        if (flavor == "mocha") {
+            return #bac2de;
+        }
+        if (flavor == "macchiato") {
+            return #b8c0e0;
+        }
+        if (flavor == "frappe") {
+            return #b5bfe2;
+        }
+        if (flavor == "latte") {
+            return #5c5f77;
+        }
+        return #ffffff;
+    };
+    out property <brush> header3: {
+        if (flavor == "mocha") {
+            return #a6adc8;
+        }
+        if (flavor == "macchiato") {
+            return #a5adcb;
+        }
+        if (flavor == "frappe") {
+            return #a5adce;
+        }
+        if (flavor == "latte") {
+            return #6c6f85;
+        }
+        return #ffffff;
+    };
+    out property <brush> subtle-text: root.overlay1;
+    out property <brush> link: {
+        if (flavor == "mocha") {
+            return #89b4fa;
+        }
+        if (flavor == "macchiato") {
+            return #8aadf4;
+        }
+        if (flavor == "frappe") {
+            return #8caaee;
+        }
+        if (flavor == "latte") {
+            return #1e66f5;
+        }
+        return #ffffff;
+    };
+    out property <brush> success: {
+        if (flavor == "mocha") {
+            return #a6e3a1;
+        }
+        if (flavor == "macchiato") {
+            return #a6da95;
+        }
+        if (flavor == "frappe") {
+            return #a6d189;
+        }
+        if (flavor == "latte") {
+            return #40a02b;
+        }
+        return #ffffff;
+    };
+    out property <brush> warning: {
+        if (flavor == "mocha") {
+            return #f9e2af;
+        }
+        if (flavor == "macchiato") {
+            return #eed49f;
+        }
+        if (flavor == "frappe") {
+            return #e5c890;
+        }
+        if (flavor == "latte") {
+            return #df8e1d;
+        }
+        return #ffffff;
+    };
+    out property <brush> error: {
+        if (flavor == "mocha") {
+            return #f38ba8;
+        }
+        if (flavor == "macchiato") {
+            return #ed8796;
+        }
+        if (flavor == "frappe") {
+            return #e78284;
+        }
+        if (flavor == "latte") {
+            return #d20f39;
+        }
+        return #ffffff;
+    };
+    out property <brush> tags: root.link;
+    out property <brush> selection-background: {
+        // TODO: 20% opacity
+        return root.overlay2;
+    };
+    out property <brush> cursor: {
+        if (flavor == "mocha") {
+            return #f5e0dc;
+        }
+        if (flavor == "macchiato") {
+            return #f4dbd6;
+        }
+        if (flavor == "frappe") {
+            return #f2d5cf;
+        }
+        if (flavor == "latte") {
+            return #dc8a78;
+        }
+        return #ffffff;
+    };
+
+    // #endregion
+
+    // #region Colors
+
+    out property <brush> lavender: {
+        if (flavor == "mocha") {
+            return #b4befe;
+        }
+        if (flavor == "macchiato") {
+            return #b7bdf8;
+        }
+        if (flavor == "frappe") {
+            return #babbf1;
+        }
+        if (flavor == "latte") {
+            return #7287fd;
+        }
+        return #ffffff;
+    };
+    out property <brush> blue: {
+        if (flavor == "mocha") {
+            return #89b4fa;
+        }
+        if (flavor == "macchiato") {
+            return #8aadf4;
+        }
+        if (flavor == "frappe") {
+            return #8caaee;
+        }
+        if (flavor == "latte") {
+            return #1e66f5;
+        }
+        return #ffffff;
+    };
+    out property <brush> sapphire: {
+        if (flavor == "mocha") {
+            return #74c7ec;
+        }
+        if (flavor == "macchiato") {
+            return #7dc4e4;
+        }
+        if (flavor == "frappe") {
+            return #85c1dc;
+        }
+        if (flavor == "latte") {
+            return #209fb5;
+        }
+        return #ffffff;
+    };
+    out property <brush> sky: {
+        if (flavor == "mocha") {
+            return #89dceb;
+        }
+        if (flavor == "macchiato") {
+            return #91d7e3;
+        }
+        if (flavor == "frappe") {
+            return #99d1db;
+        }
+        if (flavor == "latte") {
+            return #04a5e5;
+        }
+        return #ffffff;
+    };
+    out property <brush> teal: {
+        if (flavor == "mocha") {
+            return #94e2d5;
+        }
+        if (flavor == "macchiato") {
+            return #8bd5ca;
+        }
+        if (flavor == "frappe") {
+            return #81c8be;
+        }
+        if (flavor == "latte") {
+            return #179299;
+        }
+        return #ffffff;
+    };
+    out property <brush> green: {
+        if (flavor == "mocha") {
+            return #a6e3a1;
+        }
+        if (flavor == "macchiato") {
+            return #a6da95;
+        }
+        if (flavor == "frappe") {
+            return #a6d189;
+        }
+        if (flavor == "latte") {
+            return #40a02b;
+        }
+        return #ffffff;
+    };
+    out property <brush> yellow: {
+        if (flavor == "mocha") {
+            return #f9e2af;
+        }
+        if (flavor == "macchiato") {
+            return #eed49f;
+        }
+        if (flavor == "frappe") {
+            return #e5c890;
+        }
+        if (flavor == "latte") {
+            return #df8e1d;
+        }
+        return #ffffff;
+    };
+    out property <brush> peach: {
+        if (flavor == "mocha") {
+            return #fab387;
+        }
+        if (flavor == "macchiato") {
+            return #f5a97f;
+        }
+        if (flavor == "frappe") {
+            return #ef9f76;
+        }
+        if (flavor == "latte") {
+            return #fe640b;
+        }
+        return #ffffff;
+    };
+    out property <brush> maroon: {
+        if (flavor == "mocha") {
+            return #eba0ac;
+        }
+        if (flavor == "macchiato") {
+            return #ee99a0;
+        }
+        if (flavor == "frappe") {
+            return #ea999c;
+        }
+        if (flavor == "latte") {
+            return #e64553;
+        }
+        return #ffffff;
+    };
+    out property <brush> red: {
+        if (flavor == "mocha") {
+            return #f38ba8;
+        }
+        if (flavor == "macchiato") {
+            return #ed8796;
+        }
+        if (flavor == "frappe") {
+            return #e78284;
+        }
+        if (flavor == "latte") {
+            return #d20f39;
+        }
+        return #ffffff;
+    };
+    out property <brush> mauve: {
+        if (flavor == "mocha") {
+            return #cba6f7;
+        }
+        if (flavor == "macchiato") {
+            return #c6a0f6;
+        }
+        if (flavor == "frappe") {
+            return #ca9ee6;
+        }
+        if (flavor == "latte") {
+            return #8839ef;
+        }
+        return #ffffff;
+    };
+    out property <brush> pink: {
+        if (flavor == "mocha") {
+            return #f5c2e7;
+        }
+        if (flavor == "macchiato") {
+            return #f5bde6;
+        }
+        if (flavor == "frappe") {
+            return #f4b8e4;
+        }
+        if (flavor == "latte") {
+            return #ea76cb;
+        }
+        return #ffffff;
+    };
+    out property <brush> flamingo: {
+        if (flavor == "mocha") {
+            return #f2cdcd;
+        }
+        if (flavor == "macchiato") {
+            return #f0c6c6;
+        }
+        if (flavor == "frappe") {
+            return #eebebe;
+        }
+        if (flavor == "latte") {
+            return #dd7878;
+        }
+        return #ffffff;
+    };
+    out property <brush> rosewater: {
+        if (flavor == "mocha") {
+            return #f5e0dc;
+        }
+        if (flavor == "macchiato") {
+            return #f4dbd6;
+        }
+        if (flavor == "frappe") {
+            return #f2d5cf;
+        }
+        if (flavor == "latte") {
+            return #dc8a78;
+        }
+        return #ffffff;
+    };
+    
+
+}
