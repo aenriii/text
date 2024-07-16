@@ -1,0 +1,155 @@
+
+
+// oh god this is gonna be terrible
+// frame for resizing
+// TL-TTTT-TR
+// LL      RR
+// LL      RR
+// BL-BBBB-BR
+
+component FramePiece {
+
+    in property <string> place;
+    in property <MouseCursor> cursor;
+    // TL, TT, TR, LL, RR, BL, BB, BR
+    callback pointer-event(PointerEvent);
+
+    callback pointer-down(length, length);
+    callback pointer-move(length, length);
+    callback pointer-up(length, length);
+
+    in property <brush> debug-color;
+
+    touch := TouchArea {
+        width: 100%;
+        height: 100%;
+        private property <bool> has-touch-start;
+        pointer-event(ev) => {
+            if ev.button == PointerEventButton.left {
+                if ev.kind == PointerEventKind.down {
+                    root.pointer-down(touch.mouse-x, touch.mouse-y);
+                }
+                if ev.kind == PointerEventKind.up {
+                    root.pointer-up(touch.mouse-x, touch.mouse-y);
+                }
+            }
+        }
+        moved => {
+            root.pointer-move(touch.mouse-x, touch.mouse-y)
+        }
+
+        states [
+            hovered when touch.has-hover : {
+                touch.mouse-cursor: root.cursor;
+            }
+        ]
+    }
+    rect := Rectangle {
+        width: 100%;
+        height: 100%;
+        // background: debug-color;
+    }
+}
+
+export component ResizeFrame {
+
+    width: 100%;
+    height: 100%;
+
+    in property <length> border-size: 5px;
+    in property <length> corner-size: 10px;
+
+    callback pointer-tl-down <=> TL.pointer-down;
+    callback pointer-tl-up <=> TL.pointer-up;
+    callback pointer-tl-move <=> TL.pointer-move;
+    callback pointer-tt-down <=> TT.pointer-down;
+    callback pointer-tt-up <=> TT.pointer-up;
+    callback pointer-tt-move <=> TT.pointer-move;
+    callback pointer-tr-down <=> TR.pointer-down;
+    callback pointer-tr-up <=> TR.pointer-up;
+    callback pointer-tr-move <=> TR.pointer-move;
+    callback pointer-ll-down <=> LL.pointer-down;
+    callback pointer-ll-up <=> LL.pointer-up;
+    callback pointer-ll-move <=> LL.pointer-move;
+    callback pointer-rr-down <=> RR.pointer-down;
+    callback pointer-rr-up <=> RR.pointer-up;
+    callback pointer-rr-move <=> RR.pointer-move;
+    callback pointer-bl-down <=> BL.pointer-down;
+    callback pointer-bl-up <=> BL.pointer-up;
+    callback pointer-bl-move <=> BL.pointer-move;
+    callback pointer-bb-down <=> BB.pointer-down;
+    callback pointer-bb-up <=> BB.pointer-up;
+    callback pointer-bb-move <=> BB.pointer-move;
+    callback pointer-br-down <=> BR.pointer-down;
+    callback pointer-br-up <=> BR.pointer-up;
+    callback pointer-br-move <=> BR.pointer-move;
+
+    TL := FramePiece {
+        width: corner-size;
+        height: corner-size;
+        x: 0;
+        y: 0;
+        cursor: nw-resize;
+        debug-color: #ff0000;
+    }
+    TT := FramePiece {
+        width: root.width - (corner-size * 2);
+        height: border-size;
+        x: corner-size;
+        y: 0;
+        cursor: n-resize;
+        debug-color: #00ff00;
+    }
+    TR := FramePiece {
+        width: corner-size;
+        height: corner-size;
+        x: root.width - corner-size;
+        y: 0;
+        cursor: ne-resize;
+        debug-color: #ff0000;
+    }
+
+    LL := FramePiece {
+        width: border-size;
+        height: root.height - (corner-size * 2);
+        x: 0;
+        y: corner-size;
+        cursor: w-resize;
+        debug-color: #00ff00;
+    }
+
+    RR := FramePiece {
+        width: border-size;
+        height: root.height - (corner-size * 2);
+        x: root.width - border-size;
+        y: corner-size;
+        cursor: e-resize;
+        debug-color: #00ff00;
+
+    }
+
+    BL := FramePiece {
+        width: corner-size;
+        height: corner-size;
+        x: 0;
+        y: root.height - corner-size;
+        cursor: sw-resize;
+        debug-color: #ff0000;
+    }
+    BB := FramePiece {
+        width: root.width - (corner-size * 2);
+        height: border-size;
+        x: corner-size;
+        y: root.height - border-size;
+        cursor: s-resize;
+        debug-color: #00ff00;
+    }
+    BR := FramePiece {
+        width: corner-size;
+        height: corner-size;
+        x: root.width - corner-size;
+        y: root.height - corner-size;
+        cursor: se-resize;
+        debug-color: #ff0000;
+    }
+}

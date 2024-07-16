@@ -3838,8 +3838,10 @@ version = "0.1.0"
 dependencies = [
  "env_logger",
  "i-slint-backend-winit",
+ "i-slint-core",
  "lazy_static",
  "log",
+ "paste",
  "slint",
  "slint-build",
  "winit 0.30.2",

@@ -3,12 +3,18 @@
 
 import { CatppuccinPallete } from "style/CatppuccinPallete.slint";
 import { Titlebar } from "components/Titlebar.slint";
+import { ResizeFrame } from "components/ResizeFrame.slint";
 export component Application inherits Window {
-    min-height: 500px;
-    min-width: 700px;
+    preferred-height: 500px;
+    preferred-width: 700px;
+
+    // why do i have to do this for it to not lock? no idea
+    max-height: 10000px;
+    min-height: 100px;
+    min-width: 200px;
 
     title: "text";
-    background: transparent;
+    background: CatppuccinPallete.background;
     no-frame: true;
 
     callback window-close <=> titlebar.close;
@@ -19,21 +25,47 @@ export component Application inherits Window {
     callback window-drag-move <=> titlebar.drag-move;
     callback window-drag-end <=> titlebar.drag-end;
 
+    callback window-pointer-tl-down <=> RF.pointer-tl-down;
+    callback window-pointer-tl-up <=> RF.pointer-tl-up;
+    callback window-pointer-tl-move <=> RF.pointer-tl-move;
+    callback window-pointer-tt-down <=> RF.pointer-tt-down;
+    callback window-pointer-tt-up <=> RF.pointer-tt-up;
+    callback window-pointer-tt-move <=> RF.pointer-tt-move;
+    callback window-pointer-tr-down <=> RF.pointer-tr-down;
+    callback window-pointer-tr-up <=> RF.pointer-tr-up;
+    callback window-pointer-tr-move <=> RF.pointer-tr-move;
+    callback window-pointer-ll-down <=> RF.pointer-ll-down;
+    callback window-pointer-ll-up <=> RF.pointer-ll-up;
+    callback window-pointer-ll-move <=> RF.pointer-ll-move;
+    callback window-pointer-rr-down <=> RF.pointer-rr-down;
+    callback window-pointer-rr-up <=> RF.pointer-rr-up;
+    callback window-pointer-rr-move <=> RF.pointer-rr-move;
+    callback window-pointer-bl-down <=> RF.pointer-bl-down;
+    callback window-pointer-bl-up <=> RF.pointer-bl-up;
+    callback window-pointer-bl-move <=> RF.pointer-bl-move;
+    callback window-pointer-bb-down <=> RF.pointer-bb-down;
+    callback window-pointer-bb-up <=> RF.pointer-bb-up;
+    callback window-pointer-bb-move <=> RF.pointer-bb-move;
+    callback window-pointer-br-down <=> RF.pointer-br-down;
+    callback window-pointer-br-up <=> RF.pointer-br-up;
+    callback window-pointer-br-move <=> RF.pointer-br-move;
 
-    // in property <string> flavor <=> CatppuccinPallete.flavor;
+    in-out property <string> window-title <=> root.title;
 
-    rect := Rectangle {
-        width: 100%;
-        height: 100%;
-        background: CatppuccinPallete.background;
-        border-radius: 10px;
-    }
+
+    // rect := Rectangle {
+    //     width: 100%;
+    //     background: CatppuccinPallete.background;
+    //     border-radius: 10px;
+    //     min-height: root.height;
+    // }
+
     VerticalLayout {
-        max-width: root.width;
+        width: root.width;
+        height: root.height;
         titlebar := Titlebar {
             title: root.title;
         }
     }
-
+    RF := ResizeFrame { }
 }
-

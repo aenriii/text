@@ -18,7 +18,7 @@ pub fn drag_start(ui: &impl ComponentHandle) -> impl FnMut(f32, f32) {
     move |x, y| {
         match mouse_pos.lock() {
             Ok(mut it) => {
-                log::debug!(target: "window::drag", "Starting drag!");
+                log::debug!(target: "window::drag", "Starting drag at {:?}!", (x, y));
                 *it = (x as i32, y as i32);
             }
             Err(it) => {
@@ -37,7 +37,7 @@ pub fn drag_move(ui: &impl ComponentHandle) -> impl FnMut(f32, f32) {
     let delta = DELTA_TIME.clone();
 
     move |x, y| {
-        let current_time = 
+        let current_time =
             SystemTime::now()
                 .duration_since(UNIX_EPOCH)
                 .expect("father time is rolling in his grave")
@@ -49,15 +49,15 @@ pub fn drag_move(ui: &impl ComponentHandle) -> impl FnMut(f32, f32) {
                 mouse_pos.clear_poison();
                 log::warn!(target: "window::drag", "Time Poison cleared, forcing it in.");
                 delta.lock().unwrap()
-            }   
+            }
         };
-        // move window max of 40 times/s 
+        // move window max of 40 times/s
         if current_time - *time_handle < 25 {
             return;
         }
         match mouse_pos.lock() {
             Ok(it) => {
-                // do not 
+                // do not
                 if *it == (x as i32, y as i32) {
                     log::trace!(target: "window::drag", "Not moving, no diff!");
                     return;
@@ -74,7 +74,7 @@ pub fn drag_move(ui: &impl ComponentHandle) -> impl FnMut(f32, f32) {
                         y as i32 - it.1
                     );
                     log::trace!(
-                        target: "window::drag", 
+                        target: "window::drag",
                         "Moving window {:?} (mouse_pos: {:?})",
                         diff, (x as i32, y as i32)
                     );
@@ -83,7 +83,7 @@ pub fn drag_move(ui: &impl ComponentHandle) -> impl FnMut(f32, f32) {
                         current_screen_pos.y + diff.1
                     )
                 };
-                
+
                 window.set_position(new_position)
 
             }

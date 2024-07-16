@@ -20,8 +20,10 @@ component CircleIcon {
         }
     ]
 
-    touch := TouchArea {}
-    
+    touch := TouchArea {
+        mouse-cursor: pointer;
+    }
+
     Rectangle {
         width: root.size;
         height: root.size;
@@ -30,7 +32,7 @@ component CircleIcon {
     }
     // eaten from https://github.com/KDE/breeze/blob/master/kdecoration/breezebutton.cpp
 
-    if root.decoration-type == "close" : 
+    if root.decoration-type == "close" :
         Path {
             opacity: root.draw-opacity;
             stroke: rgba(0, 0, 0, 0.4);
@@ -55,7 +57,7 @@ component CircleIcon {
                 y: 13;
             }
         }
-    if root.decoration-type == "maximize" : 
+    if root.decoration-type == "maximize" :
         Path {
             opacity: root.draw-opacity;
             stroke: rgba(0, 0, 0, 0.4);
@@ -94,7 +96,7 @@ component CircleIcon {
             }
         }
 
-    
+
 }
 
 
@@ -120,21 +122,19 @@ export component Titlebar {
         border-top-right-radius: 10px;
     }
     touch := TouchArea {
-        mouse-cursor: grab;
         moved() => {
             drag-move(touch.mouse-x, touch.mouse-y);
         }
         pointer-event(ev) => {
             if ev.button == PointerEventButton.left && ev.kind == PointerEventKind.down {
                 drag-start(touch.mouse-x, touch.mouse-y);
-                touch.mouse-cursor = MouseCursor.grabbing;
             }
             if ev.button == PointerEventButton.left && ev.kind == PointerEventKind.up {
                 drag-end(touch.mouse-x, touch.mouse-y);
-                touch.mouse-cursor = MouseCursor.grab;
             }
         }
-        width: 90%;
+        width: rect.width - buttons.width - 10px;
+        x: 0;
     }
     HorizontalLayout {
         property <length> padding-lr: 10px;
@@ -151,7 +151,7 @@ export component Titlebar {
                 color: CatppuccinPallete.header1;
             }
         }
-        HorizontalLayout {
+        buttons := HorizontalLayout {
             min-width: 50px;
             spacing: 12px;
 
